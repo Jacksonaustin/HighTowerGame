@@ -7,7 +7,7 @@ public class Game extends JFrame{
 	private GameScreen gameScreen; 
 	
 	public Game() {
-		setSize(800, 800); 
+		setSize(1024, 640); 
 		setDefaultCloseOperation(EXIT_ON_CLOSE); 
 		setLocationRelativeTo(null); 
 		
