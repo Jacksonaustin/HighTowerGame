@@ -10,8 +10,8 @@ import javax.swing.JFrame;
 public class Game extends JFrame{
 	
 	private GameScreen gameScreen; 
-	
 	private BufferedImage img; 
+	
 	
 	
 	public Game() {
