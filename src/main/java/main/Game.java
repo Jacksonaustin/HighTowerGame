@@ -40,6 +40,7 @@ public class Game extends JFrame implements Runnable {
 		setSize(800, 800);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
+		setResizable(false); 
 		
 		initClasses(); 
 		add(gameScreen);
