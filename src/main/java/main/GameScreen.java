@@ -52,9 +52,9 @@ public class GameScreen extends JPanel implements ActionListener{
 		};
 	
 	private Tile[][] objectMap; 
-	
 	private Boolean clicked = false;
 	private int tileX, tileY; 
+	
 	
 	public GameScreen() {
 		
@@ -83,6 +83,7 @@ public class GameScreen extends JPanel implements ActionListener{
 		
 	
 			try {
+				tileMap = ranTileMap();
 				objectMap = makeObjectMap(tileMap);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -116,12 +117,10 @@ public class GameScreen extends JPanel implements ActionListener{
 		}
 	
 	
-		repaint(); 
 		
 	}
 
 
-	
 	public static Color randColor() {
 		
 		Random rand = new Random();
@@ -204,6 +203,20 @@ public class GameScreen extends JPanel implements ActionListener{
 
 	}
 	
+	private static int[][] ranTileMap(){
+		
+		int[][] array = new int[25][25];
+		Random rng = new Random();
+		int num;
+		
+		for(int i = 0; i < 25; i++) {
+			for(int j = 0; j< 25; j++) {
+				num = rng.nextInt(1,4);
+				array[i][j] = num;
+			}
+		}
+		return array;
+	}
 
 }
 	
