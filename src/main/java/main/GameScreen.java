@@ -145,9 +145,9 @@ public class GameScreen extends JPanel implements ActionListener{
 		
 		Tile[][] TheMap = new Tile[25][25]; 
 		
-		BufferedImage roadTile = importing("dirt_32x32.png");
-		BufferedImage waterTile = importing("water_32x32.png");
-		BufferedImage grassTile = importing("downscaled_32x32.png");
+		BufferedImage roadTile = importing("/dirt_32x32.png");
+		BufferedImage waterTile = importing("/water_32x32.png");
+		BufferedImage grassTile = importing("/downscaled_32x32.png");
 
 		
 		for(int i = 0; i < 25; i++) {
