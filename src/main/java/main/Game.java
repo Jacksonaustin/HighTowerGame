@@ -13,6 +13,12 @@ import scenes.Menu;
 import scenes.Playing;
 import scenes.Settings;
 
+import java.io.File;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.swing.JOptionPane;
+
 public class Game extends JFrame implements Runnable {
 
 	private GameScreen gameScreen;
@@ -32,6 +38,7 @@ public class Game extends JFrame implements Runnable {
 	private Menu menu;
 	private Playing playing; 
 	private Settings settings; 
+	
 
 	
 	public Game() throws IOException {
@@ -61,9 +68,11 @@ public class Game extends JFrame implements Runnable {
 	public static void main(String[] args) throws IOException {
 
 		System.out.println("Tower Defense");
+		String filepath = "music/music.wav";
 		Game game = new Game();
 		game.initInput();
 		game.start();
+		LoopMusic(filepath);
 
 	}
 
@@ -174,6 +183,29 @@ public class Game extends JFrame implements Runnable {
 	public Settings getSettings() {
 		return settings;
 	}
+	
+	public static void LoopMusic(String location) {
+	    try {
+	        File musicPath = new File(location);
 
+	        if (musicPath.exists()) {
+	            AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+	            Clip clip = AudioSystem.getClip();
+	            clip.open(audioInput); 
+	            clip.loop(Clip.LOOP_CONTINUOUSLY); 
+	            clip.start(); 
+	        } else {
+	            System.out.println("Can't find file: " + location);
+	        }
 
+	    } catch (Exception e) {
+	        System.out.println("Error playing music: " + e.getMessage());
+	        e.printStackTrace();
+	    }
+	}
 }
+
+
+	
+
+
