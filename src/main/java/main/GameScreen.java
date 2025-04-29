@@ -19,6 +19,9 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import main.tiles.Tile;
+import scenes.Menu;
+import scenes.Playing;
+import scenes.Settings;
 
 public class GameScreen extends JPanel implements ActionListener{
 	
@@ -51,15 +54,17 @@ public class GameScreen extends JPanel implements ActionListener{
 		    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
 		};
 	
-	private Tile[][] objectMap; 
-	private Boolean clicked = false;
-	private int tileX, tileY; 
+	private Game game; 
+	private Render render; 
+	private Menu menu;
+	private Playing playing; 
+	private Settings settings; 
 	
-	
-	public GameScreen() {
+	public GameScreen(Game game) {
+		this.game = game; 
 		
 		
-		addMouseListener(new MouseAdapter(){
+	/*	addMouseListener(new MouseAdapter(){
 			
 			@Override 
             public void mouseClicked(MouseEvent e) {
@@ -76,51 +81,30 @@ public class GameScreen extends JPanel implements ActionListener{
 			
 		}); 
 		
+		*/
+		
 		
 	}
 	
 	public void paintComponent(Graphics g) {
 		
 	
-			try {
-				tileMap = ranTileMap();
-				objectMap = makeObjectMap(tileMap);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	
 		
 		super.paintComponent(g);
 		
-		
-		int x = 0;
-		int y = 0;
-		
-		
-	for(int r = 0; r < 25; r ++) {
-
-			for(int p = 0; p < 25; p ++) {
-				
-				
-				if(objectMap[r][p].getImage() != null) {
-					g.drawImage(objectMap[r][p].getImage(), x, y, null); 
-				}
-				else {
-					System.out.println("Help");
-				}
-				x += 32;	
-			}
-			y += 32; 
-			x = 0;
-			
+		try {
+			game.getRender().render(g);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-	
-	
 		
+	
+			
 	}
 
 
+	
 	public static Color randColor() {
 		
 		Random rand = new Random();
@@ -140,7 +124,7 @@ public class GameScreen extends JPanel implements ActionListener{
 		
 	}
 	
-	public static Tile[][] makeObjectMap(int[][] tilemap) throws IOException {
+	/*public static Tile[][] makeObjectMap(int[][] tilemap) throws IOException {
 		
 		Tile[][] TheMap = new Tile[25][25]; 
 		
@@ -179,44 +163,8 @@ public class GameScreen extends JPanel implements ActionListener{
 		return TheMap;
 	}
 	
-	private static BufferedImage importing(String file) {
-       
-		
-    	BufferedImage img = null; 
-		InputStream is = GameScreen.class.getResourceAsStream(file);
-
-		
-		if(is == null) {
-			System.out.println(file + " wasn't loaded");
-			return null; 
-		}
-		
-		try {
-			img = ImageIO.read(is); 
-		} catch (IOException e) {
-			e.printStackTrace();
-		
-		}
-		
-		
-		return img; 
-
-	}
+	*/
 	
-	private static int[][] ranTileMap(){
-		
-		int[][] array = new int[25][25];
-		Random rng = new Random();
-		int num;
-		
-		for(int i = 0; i < 25; i++) {
-			for(int j = 0; j< 25; j++) {
-				num = rng.nextInt(1,4);
-				array[i][j] = num;
-			}
-		}
-		return array;
-	}
 
 }
 	

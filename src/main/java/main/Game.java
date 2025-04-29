@@ -7,6 +7,12 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
+import inputs.KeyBoardListener;
+import inputs.MyMouseListener;
+import scenes.Menu;
+import scenes.Playing;
+import scenes.Settings;
+
 public class Game extends JFrame implements Runnable {
 
 	private GameScreen gameScreen;
@@ -19,14 +25,23 @@ public class Game extends JFrame implements Runnable {
 	private final double FPS_SET = 120.0;
 	private final double UPS_SET = 60.0;
 	
-	public Game() {
+	private MyMouseListener myMouseListener; 
+	private KeyBoardListener keyboardListener; 
+	
+	private Render render; 
+	private Menu menu;
+	private Playing playing; 
+	private Settings settings; 
+
+	
+	public Game() throws IOException {
 
 
 		setSize(800, 800);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-
-		gameScreen = new GameScreen();
+		
+		initClasses(); 
 		add(gameScreen);
 		setVisible(true);
 
@@ -42,10 +57,11 @@ public class Game extends JFrame implements Runnable {
 	 * 
 	 */
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 
 		System.out.println("Tower Defense");
 		Game game = new Game();
+		game.initInput();
 		game.start();
 
 	}
@@ -85,6 +101,16 @@ public class Game extends JFrame implements Runnable {
 
 		}
 	}
+	
+	public void initClasses() throws IOException {
+		
+		render = new Render(this); 
+		gameScreen = new GameScreen(this);
+		menu = new Menu(this); 
+		playing = new Playing(this); 
+		settings = new Settings(this); 
+		
+	}
 
 	private void start() {
 		gameThread = new Thread(this) {
@@ -97,6 +123,20 @@ public class Game extends JFrame implements Runnable {
 		while (true) {
 
 		}
+	}
+	
+	private void initInput() {
+		
+		myMouseListener = new MyMouseListener();
+		keyboardListener = new KeyBoardListener(); 
+		
+		addMouseListener(myMouseListener);
+		addMouseMotionListener(myMouseListener); 
+		addKeyListener(keyboardListener);
+		
+		requestFocus(); 
+		
+		
 	}
 
 	private void callUPS() {
@@ -111,5 +151,28 @@ public class Game extends JFrame implements Runnable {
 		updates++;
 
 	}
+	
+	//get and set
+	
+	public Render getRender() {
+		return render; 
+	}
+
+	public Menu getMenu() {
+		return menu;
+	}
+
+
+
+	public Playing getPlaying() {
+		return playing;
+	}
+
+
+
+	public Settings getSettings() {
+		return settings;
+	}
+
 
 }
