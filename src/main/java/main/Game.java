@@ -16,19 +16,18 @@ public class Game extends JFrame{
 	
 	public Game() {
 		
-		this.importing(); 
 		
 		setSize(800,800); 
 		setDefaultCloseOperation(EXIT_ON_CLOSE); 
 		setLocationRelativeTo(null); 
 		
-		gameScreen = new GameScreen(img); 
+		gameScreen = new GameScreen(); 
 		add(gameScreen); 
 		setVisible(true);
 
 	}
 	
-	private void importing() {
+	/*private void importing() {
 		InputStream is = getClass().getResourceAsStream("downscaled_32x32.png");
 		
 		try {
@@ -38,7 +37,8 @@ public class Game extends JFrame{
 		
 		}
 	
-	}
+	*/ 
+	
 	public static void main(String[] args) {
 		
 		
