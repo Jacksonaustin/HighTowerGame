@@ -35,7 +35,7 @@ public class MyButton {
 		g.drawRect(x, y, width, height);
 		
 		//Text
-		g.drawString(text, x, y);
+		g.drawString(text, x + width/2, y + height/2);
 		
 	}
 	

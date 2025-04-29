@@ -12,43 +12,34 @@ import main.Game;
 import main.Render;
 import main.tiles.Tile;
 import managers.TIleManager;
+import ui.MyButton;
 
 public class Menu extends GameScene implements SceneMethods{
-	Tile[][] ObjectMap = new Tile[25][25]; 
 	
+	Tile[][] ObjectMap = new Tile[25][25]; 
+	private MyButton bPlaying, bSettings, bQuit;
 	
 	
 	public Menu(Game game) throws IOException {
 		super(game);
+		initButtons();
 
+	}
+	
+	private void initButtons() {
+		bPlaying = new MyButton("Play", 100,100,100,30); 
 	}
 
 	@Override
-	public void render(Graphics g) throws IOException {
-		TIleManager ti = new TIleManager(); 
+	public void render(Graphics g)  {
+		
+		drawButtons(g);
+	}
 
-
-		int x = 0;
-		int y = 0;
-		 
-		ObjectMap = ti.getTileMap(); 
-	
-		for(int r = 0; r < 25; r ++) {
-
-		for(int p = 0; p < 25; p ++) {
-			
-			
-			if(ObjectMap[r][p].getImage() != null) {
-				g.drawImage(ObjectMap[r][p].getImage(), x, y, null); 
-			}
-			else {
-				System.out.println("Help");
-			}
-			x += 32;	
-		}
-		y += 32; 
-		x = 0;
-		}		
+	private void drawButtons(Graphics g) {
+		// TODO Auto-generated method stub
+		bPlaying.draw(g);
+		
 	}
 	
 
