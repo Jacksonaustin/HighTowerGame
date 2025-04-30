@@ -37,24 +37,7 @@ public class GameScreen extends JPanel implements ActionListener{
 		this.game = game; 
 		
 		
-	/*	addMouseListener(new MouseAdapter(){
-			
-			@Override 
-            public void mouseClicked(MouseEvent e) {
-				tileX = e.getX()/32;
-				tileY = e.getY()/32; 
-				clicked = true; 
-                System.out.println("Clicked at: (" + tileX + ", " + tileY + ")");
-                System.out.println(objectMap[tileX][tileY].returnName()); 
-                System.out.println(tileMap[tileX][tileY]); 
-                
-                objectMap[tileX][tileY] = objectMap[1][0]; 
-
-				}
-			
-		}); 
-		
-		*/
+	
 		
 		
 	}
@@ -97,46 +80,6 @@ public class GameScreen extends JPanel implements ActionListener{
 		
 	}
 	
-	/*public static Tile[][] makeObjectMap(int[][] tilemap) throws IOException {
-		
-		Tile[][] TheMap = new Tile[25][25]; 
-		
-		BufferedImage roadTile = importing("/dirt_32x32.png");
-		BufferedImage waterTile = importing("/water_32x32.png");
-		BufferedImage grassTile = importing("/downscaled_32x32.png");
-
-		
-		for(int i = 0; i < 25; i++) {
-			
-			for(int p = 0; p < 25; p++) {
-				
-				if(tilemap[i][p] == 1) {
-					
-					Tile Grass = new Tile(grassTile, false, "Grass");
-				    TheMap[i][p] = Grass; 
-					
-				}
-				else if(tilemap[i][p] == 2) {
-
-					Tile Water = new Tile(waterTile, false, "Water");
-			     	TheMap[i][p] = Water; 
-
-
-					
-				}
-				else if(tilemap[i][p] == 3) {
-					Tile Dirt = new Tile(roadTile, true,"Road");
-					TheMap[i][p] = Dirt; 
-
-
-				//	System.out.println(TheMap[i][p]); 
-				}
-			}
-		}
-		return TheMap;
-	}
-	
-	*/
 	
 
 }

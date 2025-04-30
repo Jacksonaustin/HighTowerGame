@@ -5,27 +5,20 @@ import java.awt.image.BufferedImage;
 public class Tile {
 	
 	public BufferedImage img;
-	public boolean walkable; 
-	public String name;
+	public int id;
 	
-	public Tile(BufferedImage img, Boolean walkable, String name ) {
+	public Tile(BufferedImage img, int id) {
 		
 		this.img = img; 
-		this.walkable = walkable; 
-		this.name = name; 
+		this.id = id;
 				
 		
 	}
 	
-	public String returnName() {
-		return this.name;
+	public int returnId() {
+		return this.id;
 	}
 	
-	public boolean isWalkable() {
-			
-		return walkable; 
-		
-	}
 	
 	public BufferedImage getImage() {
 		return img; 

@@ -12,27 +12,25 @@ import managers.TIleManager;
 public class Playing extends GameScene implements SceneMethods {
 
 	
-	private Tile[][] world; 
-	private TIleManager tileManager; 
+	private int[][] world; 
+	private TIleManager tileManager;
+	
+	
 	public Playing(Game game) throws IOException {
 		super(game);
 		// TODO Auto-generated constructor stub
 		world = LevelBuilder.getLevelData(); 
+		tileManager = new TIleManager();
 		
 	}
 
 	@Override
 	public void render(Graphics g) {
 	    for (int x = 0; x < world.length; x++) {
-	        for (int y = 0; y < world[x].length - 1; y++) {
-	            Tile tile = world[x][y];
-	            if (tile != null && tile.getImage() != null) {
-	                g.drawImage(tile.getImage(), x * 32, y * 32, null);
-	            } else {
-	                System.out.println("Null tile at: " + x + "," + y);
-	            }
+	        for (int y = 0; y < world[x].length; y++) {
+	        	int id = world[x][y] - 1;
+	            g.drawImage(tileManager.getSprite(id), x * 32, y * 32, null);
 	        }
 	    }
-	}
-
+	} 
 }
